@@ -8,7 +8,7 @@ Mariem Kheyar<br>
 Valeria Dolgaliova<br>
 
 ## About the Project
-###✨ Inspiration
+### Inspiration
 As young students, we constantly make financial decisions that impact our future. Being more visual, we believe that a visual novel offers a more interactive and personal experience to predict one’s spending behavior. Imagine you have access to a fun, engaging and game-like simulation that can provide you with a general idea of how responsible you are with your earnings.
 With the growing popularity of interactive visual novels, we introduce you, Financial Visual Novel GAM, a platform that allows users to predict the type of spender they are based on their daily decisions.
 ###✍️ What it does
