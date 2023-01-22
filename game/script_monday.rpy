@@ -65,7 +65,7 @@ label start:
 label monday_start:
     scene roomBac with fade
     #displays current bank balance the user has
-    show text "Savings: $[bankAcc] " at topright
+    show text "Savings: [bankAcc]$ " at topright
     #announces the day
     "Day 1"
     show user sleep at slep
