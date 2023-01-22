@@ -1,4 +1,18 @@
-﻿# The script of the game goes in this file.
+# The script of the game goes in this file.
+
+#defined actions
+transform slep:
+    zoom 0.65 ypos 0.40 xpos 0.30 rotate -55.0 rotate_pad True
+
+transform flip:
+    xzoom -1.0
+
+transform unflip:
+    xzoom 1.0
+
+
+transform wakeup:
+    zoom 1.0 rotate 0.0 ypos 1.2 xpos 0.0
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
@@ -20,18 +34,20 @@ image roomBac = im.Scale("images/bg room.png", 1920, 1080)
 image schoolBac = im.Scale("images/bg school.jpg", 1920, 1080)
 image streetBac = im.Scale("images/bg street.jpg", 1920, 1080)
 image transitBac = im.Scale("images/bg transportation.jpg", 1920, 1080)
+image kitchenBac = im.Scale("images/bg kitchen.png", 1920, 1080)
 
 # python variable storing the user's current available money
 default bankAcc = 100
 # python variable storing boolean variable of whether the user has done groceries
 $ shopping = False
-$ buyBreakfast = False
+default buyBreakfast = False
 
 
 # The game starts here.
 label start: 
-    show roomBac
-    with fade
+    scene cafeBac
+    play music "audio/Umineko Episode 1 OST - Novelette.mp3" fadein 2.0 loop
+    with fade    
     $ user = renpy.input("Hey there, what's your name?")
     $ user = user.strip()
     if user == "":
@@ -47,8 +63,7 @@ label start:
     
 # initial label for monday - this is where the storyline for monday starts
 label monday_start:
-    show roomBac
-    with fade
+    scene roomBac with fade
     #displays current bank balance the user has
     show text "Savings: $[bankAcc] " at topright
     #announces the day
@@ -67,24 +82,27 @@ label monday_start:
             jump snooze_monday
         # option 2
         "Get out of bed":
-            hide user sleep
             jump outBed_monday
 
     return
 
 
 label snooze_monday:
+    scene roomBac with fade
+    #displays current bank balance the user has
+    show text "Savings: $[bankAcc] " at topright
+    show user sleep
     "You snoozed you alarm another 3 times before checking the time."
+    hide user sleep
     show user surprides at center
     user "\"Sh**, I'm gonna be late!\""
+    $ buyBreakfast = True
     #"Better get your morning coffee on your way to work!"
     jump monday_commute
 
     return
 
-label outBed_monday:
-    show roomBac
-    with fade
+label outBed_monday:    
     show user normal at right
     "You get ready for the day and have half an hour to spare."
     user "*stomach growls*"
@@ -101,46 +119,130 @@ label outBed_monday:
     return
 
 label breakfast_monday:
+    scene kitchenBac with fade
+    # displays current bank balance the user has
+    show text "Savings: $[bankAcc] " at topright
     "You enjoy a croissant and coffee before leaving to catch the bus."
     jump monday_commute
     return
 
 label monday_commute:
-    show transitBac
-
-    if buyBreakfast:
-        user "\"I guess I should grab something before my lecture.\""
-        jump monday_commute
+    scene transitBac with fade
+    # displays current bank balance the user has
+    show text "Savings: $[bankAcc] " at topright
+    show user surprides at center
+    menu:
+        "\"I really hungry...\"" if buyBreakfast:
+            jump buying_breakfast_monday
+        "\"Almost there...\"" if buyBreakfast == False:
+            jump goToSchool_monday
     
     return
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-label monday_choice1a:
-    show cafeBac
+label buying_breakfast_monday:
+    show user smile
+    user "\"I guess I should grab something before my lecture.\""
+    scene cafeBac with fade
+    # displays current bank balance the user has
     show text "Savings: $[bankAcc] " at topright
-    "damn, i feel bad"
+    show user normal at right
+    #breakfast options
+    menu:
+        user "\"Hmm, what should I buy?\""
+
+        "A tall latte and a breakfast sandwich from Starbucks - $15":
+            $ bankAcc -= 15
+            jump school_monday
+        "A large coffee and a bagel - $5":
+            $ bankAcc -= 5
+            jump school_monday
+    
     return
-label monday_choice1b:
-    show cafeBac
+
+label school_monday:
+    scene schoolBac with fade
     show text "Savings: $[bankAcc] " at topright
-    "honesty is the best policy"
-    return 
+    show user confident at right
+    user "\"Better get to my classes...\""
 
+    scene classroomBac with dissolve
+    show text "Savings: $[bankAcc] " at topright
+    show user glasses
+    "You attend your lectures for the day and begin packing up"
+    user "*relaxes* What a long day!"
+    jump jobretail
 
+    return
 
-label wednesday:
-    play music "audio/Crazy Frog - Axel F (Official Video).mp3"
-    user "we did it!"
+label jobretail:
+    scene jobretailBac with fade
+    show text "Savings: $[bankAcc] " at topright
+    show user normal at right
+    "After classes end, you head over to your part-time job, where you tend to the local convenience store."
+    hide user normal at right
+    $ bankAcc += 100
+    scene streetBac with fade
+    show text "Savings: $[bankAcc] " at topright
+    show  user confident at right
+    user "What a hard day's work! It was so busy that I skipped my break."
+
+    "You check that the time and see that it's a little past supper time."
+
+    menu:
+        user "\"What should I do about supper?\""
+        "Pickup my groceries and cook supper - $40":
+            $ shopping = True
+            $ bankAcc -= 40
+            jump cookSupper
+        "Order Uber Eats for the meal - $30":
+            $ bankAcc -= 30
+            jump dayEnd
+    return
+
+label cookSupper:
+    scene kitchenBac with fade
+    show text "Savings: $[bankAcc] " at topright
+    show  user smile at right
+
+    "After finishing the weekly grocery run, you cook yourself a meal."
+
+    jump dayEnd
+
+    return
+
+label dayEnd:
+    scene roomBac with fade
+    show text "Savings: $[bankAcc] " at topright
+    show  user normal at right
+    "You've eaten your supper and are beginning to wind down."
+    hide user normal
+    show user sleep at right
+    "Time to sleep..."
+    jump wed_start
+    return
+
+####### WEDNESDAY #######
+# initial label for wednesday - this is where the storyline for monday starts
+label wed_start:
+    scene roomBac with fade
+    #displays current bank balance the user has
+    show text "Savings: $[bankAcc] " at topright
+    #announces the day
+    "Monday"
+    show user sleep at right
+    #narration - expedition before first choice
+    "Beep beep beep bee-"
+    user "*groans* \"Urgh, just 5 more minutes...\""
+    "You reach for your phone and snooze your alarm."
+    # first choice
+    menu:
+        "[user], the alarm went off again. What will you do now?"
+        #option 1
+        "Snooze again":
+            $ buyBreakfast = True
+            jump snooze_monday
+        # option 2
+        "Get out of bed":
+            jump outBed_monday
+
     return
