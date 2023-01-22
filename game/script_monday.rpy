@@ -270,7 +270,7 @@ label snooze_wed:
 label outBed_wed:    
     hide user
     show user normal at left
-    "You get ready for the day, leaving you with the hole morning ahead."
+    "You get ready for the day, leaving you with the whole morning ahead."
     user "*stomach growls*"
     #choice to make
     menu:
