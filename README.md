@@ -8,10 +8,10 @@ Mariem Kheyar<br>
 Valeria Dolgaliova<br>
 
 ## About the Project
-### Inspiration
+### ✨Inspiration
 As young students, we constantly make financial decisions that impact our future. Being more visual, we believe that a visual novel offers a more interactive and personal experience to predict one’s spending behavior. Imagine you have access to a fun, engaging and game-like simulation that can provide you with a general idea of how responsible you are with your earnings.<br>
 With the growing popularity of interactive visual novels, we introduce you, Financial Visual Novel GAM, a platform that allows users to predict the type of spender they are based on their daily decisions.<br>
-### What it does
+### 🧭 What it does
 With Visual , you can keep clicking to keep the text, graphics and sound moving as if you are turning a page of a book, while making narrative choices along the way. <br>
 ### ⚙️ How we built it
 We used a game engine called RenPy, which is a python based visual novel engine.<br> 
