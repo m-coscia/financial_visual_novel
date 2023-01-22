@@ -67,8 +67,8 @@ label monday_start:
     #displays current bank balance the user has
     show text "Savings: $[bankAcc] " at topright
     #announces the day
-    "Monday"
-    show user sleep at right
+    "Day 1"
+    show user sleep at slep
     #narration - expedition before first choice
     "Beep beep beep bee-"
     user "*groans* \"Urgh, just 5 more minutes...\""
@@ -91,8 +91,8 @@ label snooze_monday:
     scene roomBac with fade
     #displays current bank balance the user has
     show text "Savings: $[bankAcc] " at topright
-    show user sleep
-    "You snoozed you alarm another 3 times before checking the time."
+    show user sleep at slep
+    "You snoozed your alarm another 3 times before checking the time."
     hide user sleep
     show user surprides at center
     user "\"Sh**, I'm gonna be late!\""
@@ -102,7 +102,10 @@ label snooze_monday:
 
     return
 
-label outBed_monday:    
+label outBed_monday:   
+    scene roomBac with fade
+    #displays current bank balance the user has
+    show text "Savings: $[bankAcc] " at topright
     show user normal at right
     "You get ready for the day and have half an hour to spare."
     user "*stomach growls*"
@@ -114,6 +117,7 @@ label outBed_monday:
             jump breakfast_monday
         #option 2
         "Pick up breakfast on the way to school":
+            $ buyBreakfast = True
             jump monday_commute
 
     return
@@ -135,7 +139,7 @@ label monday_commute:
         "\"I really hungry...\"" if buyBreakfast:
             jump buying_breakfast_monday
         "\"Almost there...\"" if buyBreakfast == False:
-            jump goToSchool_monday
+            jump school_monday
     
     return
 
@@ -180,7 +184,7 @@ label jobretail:
     show user normal at right
     "After classes end, you head over to your part-time job, where you tend to the local convenience store."
     hide user normal at right
-    $ bankAcc += 100
+    $ bankAcc += 50
     scene streetBac with fade
     show text "Savings: $[bankAcc] " at topright
     show  user confident at right
@@ -196,7 +200,7 @@ label jobretail:
             jump cookSupper
         "Order Uber Eats for the meal - $30":
             $ bankAcc -= 30
-            jump dayEnd
+            jump dayEnd_mon
     return
 
 label cookSupper:
@@ -206,20 +210,21 @@ label cookSupper:
 
     "After finishing the weekly grocery run, you cook yourself a meal."
 
-    jump dayEnd
+    jump dayEnd_mon
 
     return
 
-label dayEnd:
+label dayEnd_mon:
     scene roomBac with fade
     show text "Savings: $[bankAcc] " at topright
     show  user normal at right
     "You've eaten your supper and are beginning to wind down."
     hide user normal
-    show user sleep at right
+    show user sleep at slep
     "Time to sleep..."
     jump wed_start
     return
+
 
 ####### WEDNESDAY #######
 # initial label for wednesday - this is where the storyline for monday starts
@@ -228,21 +233,114 @@ label wed_start:
     #displays current bank balance the user has
     show text "Savings: $[bankAcc] " at topright
     #announces the day
-    "Monday"
+    "Day 2"
     show user sleep at right
     #narration - expedition before first choice
     "Beep beep beep bee-"
-    user "*groans* \"Urgh, just 5 more minutes...\""
-    "You reach for your phone and snooze your alarm."
+    user "*groans* \"Urgh, not again...\""
+    "Once again, you are a creature of habit - you snooze the alarm."
     # first choice
     menu:
         "[user], the alarm went off again. What will you do now?"
         #option 1
         "Snooze again":
             $ buyBreakfast = True
-            jump snooze_monday
+            jump snooze_wed
         # option 2
         "Get out of bed":
-            jump outBed_monday
+            jump outBed_wed
 
+    return
+
+label snooze_wed:
+    scene roomBac with fade
+    #displays current bank balance the user has
+    show text "Savings: $[bankAcc] " at topright
+    show user sleep
+    "You snoozed your alarm until you realize you overslept."
+    hide user sleep
+    show user surprides at center
+    user "\"Sh**, I'm gonna be late!\""
+    $ buyBreakfast = True
+    #"Better get your morning coffee on your way to work!"
+    jump wed_commute
+
+    return
+
+label outBed_wed:    
+    hide user
+    show user normal at right
+    "You get ready for the day, leaving you with the hole morning ahead."
+    user "*stomach growls*"
+    #choice to make
+    menu:
+        "Maybe you should eat breakfast, [user]."
+        #option 1
+        "Make myself avocado toast":
+            jump breakfast_wed
+        #option 2
+        "Pick up a meal on the way to school":
+            $ buyBreakfast = True
+            jump wed_commute
+
+    return
+
+label breakfast_wed:
+    scene kitchenBac with fade
+    # displays current bank balance the user has
+    show text "Savings: $[bankAcc] " at topright
+    show user smile at center
+    "You enjoy your avocado toast and coffee before leaving to catch the bus."
+    jump wed_commute
+    return
+
+label wed_commute:
+    scene transitBac with fade
+    # displays current bank balance the user has
+    show text "Savings: $[bankAcc] " at topright
+    show user surprides at center
+    menu:
+        "\"I really hungry...\"" if buyBreakfast:
+            jump buying_breakfast_wed
+        "\"Almost there...\"" if buyBreakfast == False:
+            jump school
+    
+    return
+
+label buying_breakfast_wed:
+    show user smile
+    user "\"I guess I should grab something before my lecture.\""
+    scene cafeBac with fade
+    # displays current bank balance the user has
+    show text "Savings: $[bankAcc] " at topright
+    show user normal at right
+    #breakfast options
+    menu:
+        user "\"Hmm, what should I buy?\""
+
+        "A tall latte and a breakfast sandwich from Starbucks - $15":
+            $ bankAcc -= 15
+            jump school
+        "A large coffee and a bagel - $5":
+            $ bankAcc -= 5
+            jump school
+    
+    return
+
+label school:
+    scene schoolBac with fade
+    show text "Savings: $[bankAcc] " at topright
+    show user confident at right
+    user "\"Better get to my classes...\""
+
+    scene classroomBac with dissolve
+    show text "Savings: $[bankAcc] " at topright
+    show user glasses
+    "You attend your lectures for the day and begin packing up"
+    user "*relaxes* What a long day!"
+    jump study
+
+    return
+
+label study:
     return
