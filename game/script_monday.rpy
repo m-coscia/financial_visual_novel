@@ -34,7 +34,7 @@ image roomBac = im.Scale("images/bg room.png", 1920, 1080)
 image schoolBac = im.Scale("images/bg school.jpg", 1920, 1080)
 image streetBac = im.Scale("images/bg street.jpg", 1920, 1080)
 image transitBac = im.Scale("images/bg transportation.jpg", 1920, 1080)
-image kitchenBac = im.Scale("images/bg kitchen.png", 1920, 1080)
+image kitchenBac = im.Scale("images/bg kitchen.jpg", 1920, 1080)
 
 # python variable storing the user's current available money
 default bankAcc = 100
