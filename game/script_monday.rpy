@@ -136,7 +136,7 @@ label monday_commute:
     show text "Savings: $[bankAcc] " at topright
     show user surprides at center
     menu:
-        "\"I really hungry...\"" if buyBreakfast:
+        "\"I'm really hungry...\"" if buyBreakfast:
             jump buying_breakfast_monday
         "\"Almost there...\"" if buyBreakfast == False:
             jump school_monday
@@ -182,7 +182,7 @@ label jobretail:
     scene jobretailBac with fade
     show text "Savings: $[bankAcc] " at topright
     show user normal at center
-    "After classes end, you head over to your part-time job, where you tend to the local convenience store."
+    "After classes end, you head over to your part-time job, where you tend to the local retail store."
     hide user normal
     $ bankAcc += 50
     scene streetBac with fade
@@ -190,7 +190,7 @@ label jobretail:
     show  user confident at left
     user "What a hard day's work! It was so busy that I skipped my break."
 
-    "You check that the time and see that it's a little past supper time."
+    "You check the time and see that it's a little past supper time."
 
     menu:
         user "\"What should I do about supper?\""
