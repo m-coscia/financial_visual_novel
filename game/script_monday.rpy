@@ -106,7 +106,7 @@ label outBed_monday:
     scene roomBac with fade
     #displays current bank balance the user has
     show text "Savings: $[bankAcc] " at topright
-    show user normal at right
+    show user normal at left
     "You get ready for the day and have half an hour to spare."
     user "*stomach growls*"
     #choice to make
@@ -149,7 +149,7 @@ label buying_breakfast_monday:
     scene cafeBac with fade
     # displays current bank balance the user has
     show text "Savings: $[bankAcc] " at topright
-    show user normal at right
+    show user normal at left
     #breakfast options
     menu:
         user "\"Hmm, what should I buy?\""
@@ -166,7 +166,7 @@ label buying_breakfast_monday:
 label school_monday:
     scene schoolBac with fade
     show text "Savings: $[bankAcc] " at topright
-    show user confident at right
+    show user confident at center
     user "\"Better get to my classes...\""
 
     scene classroomBac with dissolve
@@ -181,13 +181,13 @@ label school_monday:
 label jobretail:
     scene jobretailBac with fade
     show text "Savings: $[bankAcc] " at topright
-    show user normal at right
+    show user normal at center
     "After classes end, you head over to your part-time job, where you tend to the local convenience store."
-    hide user normal at right
+    hide user normal
     $ bankAcc += 50
     scene streetBac with fade
     show text "Savings: $[bankAcc] " at topright
-    show  user confident at right
+    show  user confident at left
     user "What a hard day's work! It was so busy that I skipped my break."
 
     "You check that the time and see that it's a little past supper time."
@@ -206,7 +206,7 @@ label jobretail:
 label cookSupper:
     scene kitchenBac with fade
     show text "Savings: $[bankAcc] " at topright
-    show  user smile at right
+    show  user smile at center
 
     "After finishing the weekly grocery run, you cook yourself a meal."
 
@@ -217,7 +217,7 @@ label cookSupper:
 label dayEnd_mon:
     scene roomBac with fade
     show text "Savings: $[bankAcc] " at topright
-    show  user normal at right
+    show  user normal at center
     "You've eaten your supper and are beginning to wind down."
     hide user normal
     show user sleep at slep
@@ -234,11 +234,11 @@ label wed_start:
     show text "Savings: $[bankAcc] " at topright
     #announces the day
     "Day 2"
-    show user sleep at right
+    show user sleep at slep
     #narration - expedition before first choice
     "Beep beep beep bee-"
     user "*groans* \"Urgh, not again...\""
-    "Once again, you are a creature of habit - you snooze the alarm."
+    "Once again, you are a tired creature of habit - you snooze the alarm."
     # first choice
     menu:
         "[user], the alarm went off again. What will you do now?"
@@ -256,7 +256,7 @@ label snooze_wed:
     scene roomBac with fade
     #displays current bank balance the user has
     show text "Savings: $[bankAcc] " at topright
-    show user sleep
+    show user sleep at slep
     "You snoozed your alarm until you realize you overslept."
     hide user sleep
     show user surprides at center
@@ -269,7 +269,7 @@ label snooze_wed:
 
 label outBed_wed:    
     hide user
-    show user normal at right
+    show user normal at left
     "You get ready for the day, leaving you with the hole morning ahead."
     user "*stomach growls*"
     #choice to make
@@ -290,7 +290,7 @@ label breakfast_wed:
     # displays current bank balance the user has
     show text "Savings: $[bankAcc] " at topright
     show user smile at center
-    "You enjoy your avocado toast and coffee before leaving to catch the bus."
+    "You enjoy your avocado toast and coffee before walking out the front door to catch the bus."
     jump wed_commute
     return
 
@@ -313,7 +313,7 @@ label buying_breakfast_wed:
     scene cafeBac with fade
     # displays current bank balance the user has
     show text "Savings: $[bankAcc] " at topright
-    show user normal at right
+    show user normal at left
     #breakfast options
     menu:
         user "\"Hmm, what should I buy?\""
@@ -330,7 +330,7 @@ label buying_breakfast_wed:
 label school:
     scene schoolBac with fade
     show text "Savings: $[bankAcc] " at topright
-    show user confident at right
+    show user confident at center
     user "\"Better get to my classes...\""
 
     scene classroomBac with dissolve
