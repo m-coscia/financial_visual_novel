@@ -1,5 +1,5 @@
 # financial_visual_novel
-submission to ConUHacks 2023
+Submission to ConUHacks 2023
 
 ## collaborators:
 Megan Coscia<br>
