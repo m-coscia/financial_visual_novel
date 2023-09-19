@@ -1,11 +1,11 @@
-# financial_visual_novel
+# Financial Visual Novel
 Submission to ConUHacks 2023
 
-## collaborators:
-@m-coscia Megan Coscia <br>
-Abdelraouf Boumedal<br>
-Mariem Kheyar<br>
-Valeria Dolgaliova<br>
+## Collaborators:
+[Megan Coscia](https://github.com/m-coscia)<br>
+[Abdelraouf Boumedal](https://github.com/Eggsaminator) <br>
+[Mariem Kheyar](https://github.com/Zigzaw) <br>
+[Valeria Dolgaliova](https://github.com/valeriad0l)<br>
 
 ## About the Project
 ### ✨Inspiration
@@ -20,3 +20,5 @@ It was quite difficult to get familiar with using the game engine at first.  We 
 ### 🏆 Accomplishments that we're proud of
 We're definitely very proud to have turned this idea into a working prototype. Seeing an idea come to life is an immense amount of joy. We’re able to come up with a story in a short period of time, and we’re also proud of ourselves for learning a new visual novel engine. We are truly blessed to have had the opportunity to work together with such talented, patient, and organized team members.
 
+## Demo of the Visual Novel (Project)
+https://github.com/m-coscia/financial_visual_novel/assets/95299392/6ac7844a-eceb-49b4-a99d-2a49f7164020
