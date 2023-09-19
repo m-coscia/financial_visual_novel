@@ -2,7 +2,7 @@
 Submission to ConUHacks 2023
 
 ## collaborators:
-Megan Coscia<br>
+@m-coscia Megan Coscia <br>
 Abdelraouf Boumedal<br>
 Mariem Kheyar<br>
 Valeria Dolgaliova<br>
